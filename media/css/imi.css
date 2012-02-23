@@ -1,0 +1,19 @@
+/**
+ * Header Template
+ *
+*/
+.header_logo{
+    vertical-align: middle;
+    display: inline-block;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+.header_title{
+    vertical-align: middle;
+    /* font-family: Futura, ‘Century Gothic’, AppleGothic, sans-serif;
+    font-weight: bold; */
+    font-family: Impact, Haettenschweiler, ‘Franklin Gothic Bold’, Charcoal, ‘Helvetica Inserat’, ‘Bitstream Vera Sans Bold’, ‘Arial black’, sans-serif;
+    font-size: 36px;
+    
+}
+
