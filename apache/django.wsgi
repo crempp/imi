@@ -1,29 +1,17 @@
-import os, sys
+import os
+import sys
 
-# path is the parent directory of this script ('/var/www' in this case)
-#path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+root_dir = "/srv/www/lapinlabs.com"
+proj_name = "imiweb"
 
-# we check for path because we're told to at the tail end of
-# http://code.google.com/p/modwsgi/wiki/ConfigurationDirectives#WSGIReloadMechanism 
-#if path not in sys.path:
-#    sys.path.append(path)
-
-sys.path.append('/web/imi.chadrempp.com')
-sys.path.append('/web/imi.chadrempp.com/imiweb')
-sys.path.append('/web/imi.chadrempp.com/imistate')
-sys.path.append('/web/imi.chadrempp.com/imicommander')
-sys.path.append('/web/imi.chadrempp.com/imiservicer')
+sys.path.append(root_dir + "/_siteenv/lib/python2.7/site-packages")
+sys.path.append(root_dir)
+sys.path.append(root_dir + "/" + proj_name)
+sys.path.append(root_dir + "/imistate")
+sys.path.append(root_dir + "/imicommander")
+sys.path.append(root_dir + "/imiservicer")
 
 os.environ['DJANGO_SETTINGS_MODULE'] = 'imiweb.settings'
 
-# Fixes Improperly configured error
-# See http://groups.google.com/group/django-feincms/msg/68ff5462061fa84b
-#from django.core.management.validation import get_validation_errors 
-#try: 
-#        from cStringIO import StringIO 
-#except ImportError: 
-#        from StringIO import StringIO 
-#s = StringIO() 
-#num_errors = get_validation_errors(s, None) 
 import django.core.handlers.wsgi 
 application = django.core.handlers.wsgi.WSGIHandler()

@@ -1,30 +1,48 @@
-# Django settings for imiweb project.
-import os, sys
+# -*- coding: utf-8 -*-
+import os
+
+gettext = lambda s: s
+
+PROJECT_DIR = os.path.abspath(os.path.dirname(__file__))
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
-LOCAL_DEV = True
-
-# The root directory is one level above here
-ROOT_DIR = '/'.join(os.path.realpath(os.path.dirname(__file__)).split('/')[:-1])
-# The project path is here
-PROJECT_PATH = os.path.realpath(os.path.dirname(__file__))
-
 ADMINS = (
-    # ('Your Name', 'your_email@domain.com'),
+    ('Chad Rempp', 'crempp@gmail.com'),
 )
 
 MANAGERS = ADMINS
 
+# Default language code for this installation. All choices can be found here:
+# http://www.i18nguy.com/unicode/language-identifiers.html
+LANGUAGE_CODE = 'en-us'
+
+# This is defined here as a do-nothing function because we can't import
+# django.utils.translation -- that module depends on the settings.
+gettext_noop = lambda s: s
+
+# here is all the languages supported by the CMS
+PAGE_LANGUAGES = (
+    ('en-us', gettext_noop('US English')),
+)
+
+# copy PAGE_LANGUAGES
+languages = list(PAGE_LANGUAGES)
+
+# redefine the LANGUAGES setting in order to be sure to have the correct request.LANGUAGE_CODE
+LANGUAGES = languages
+
+DEFAULT_LANGUAGE = 0
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'imi',                   # Or path to database file if using sqlite3.
-        'USER': 'siteuser',              # Not used with sqlite3.
-        'PASSWORD': 'mMlJ10',            # Not used with sqlite3.
-        'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
-        'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
+        'ENGINE':   'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME':     'www_imi',                  # Or path to database file if using sqlite3.
+        'USER':     'www_imi',                  # Not used with sqlite3.
+        'PASSWORD': 'rsLuHwAe',                 # Not used with sqlite3.
+        'HOST':     'galois.lapinlabs.com',     # Set to empty string for localhost. Not used with sqlite3.
+        'PORT':     '',                         # Set to empty string for default. Not used with sqlite3.
     }
 }
 
@@ -37,10 +55,6 @@ DATABASES = {
 # system time zone.
 TIME_ZONE = 'America/Chicago'
 
-# Language code for this installation. All choices can be found here:
-# http://www.i18nguy.com/unicode/language-identifiers.html
-LANGUAGE_CODE = 'en-us'
-
 SITE_ID = 1
 
 # If you set this to False, Django will make some optimizations so as not
@@ -51,23 +65,23 @@ USE_I18N = True
 # calendars according to the current locale
 USE_L10N = True
 
-# Absolute path to the directory that holds media.
+# Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/"
-MEDIA_ROOT = '%s/media/'%ROOT_DIR
+MEDIA_ROOT = os.path.join(PROJECT_DIR, 'media')
+
+STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash if there is a path component (optional in other cases).
 # Examples: "http://media.lawrence.com", "http://example.com/media/"
 MEDIA_URL = '/media/'
 
+STATIC_URL = '/static/'
+
 # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
 # trailing slash.
 # Examples: "http://foo.com/media/", "/media/".
-ADMIN_MEDIA_PREFIX = '/media/admin/'
-
-# Static files for development.
-# STATIC_ROOT = '%s/media/'%ROOT_DIR
-#STATIC_URL = "http://imi.chadrempp.com/media/"
+ADMIN_MEDIA_PREFIX = '/static/admin/'
 
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = 'dwff2g5-6szwzm-_de*e#jrr3*ke&ilrgv(+zqsi1mk7w&%l&)'
