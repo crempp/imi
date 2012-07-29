@@ -1,0 +1,20 @@
+## generic files to ignore
+*~
+*.lock
+*.DS_Store
+*.swp
+*.out
+.svn
+
+# Apache
+log/*.log
+log/*.err
+
+# Python
+*.py[cod]
+*.egg
+*.egg-info
+pip-log.txt
+
+# C extensions
+*.so
